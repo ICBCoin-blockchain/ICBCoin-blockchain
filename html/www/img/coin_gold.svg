@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="24" height="24" fill="none"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="0.347" y1="0.026" x2="0.671" y2="0.976" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#efc10a"/>
+      <stop offset="1" stop-color="#d9af08"/>
+    </linearGradient>
+  </defs>
+  <g id="coin_gold_24px" clip-path="url(#clip-path)">
+    <circle id="Ellipse_13" data-name="Ellipse 13" cx="12" cy="12" r="12" fill="#fff"/>
+    <path id="base" d="M7.329,23.057A12.04,12.04,0,1,1,12,24,11.962,11.962,0,0,1,7.329,23.057ZM1,12A11,11,0,1,0,12,1,11.012,11.012,0,0,0,1,12Zm1.6,0A9.4,9.4,0,1,1,12,21.4,9.4,9.4,0,0,1,2.6,12Z" fill="url(#linear-gradient)"/>
+    <path id="n--" d="M8.106,0A3.841,3.841,0,0,0,4.652,1.965H4.609L4.5.237H2.817c.065.864.086,1.749.086,2.828v.612H0v.7H2.9v2.2H.675v.7H2.9v3.411H4.8V4.4a2.732,2.732,0,0,1,.13-.885A2.7,2.7,0,0,1,7.48,1.577c1.792,0,2.418,1.4,2.418,3.087v6.024h1.9V7.276h2.6v-.7H11.8V4.448c0-.025,0-.048,0-.073h3.3v-.7H11.756C11.455.742,9.442,0,8.106,0Z" transform="translate(3.648 8.795) rotate(-13)" fill="#fff"/>
+  </g>
+</svg>

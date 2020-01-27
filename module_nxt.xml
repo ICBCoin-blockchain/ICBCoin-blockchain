@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_nxt" default="compile.module.nxt">
+  <dirname property="module.nxt.basedir" file="${ant.file.module_nxt}"/>
+  
+  <property name="module.jdk.home.nxt" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.nxt" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.nxt" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.nxt" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="nxt.output.dir" value="${module.nxt.basedir}/classes"/>
+  <property name="nxt.testoutput.dir" value="${module.nxt.basedir}/test/classes"/>
+  
+  <path id="nxt.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="nxt.module.production.classpath">
+    <path refid="${module.jdk.classpath.nxt}"/>
+    <pathelement location="${basedir}/conf"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.testlib.classpath"/>
+  </path>
+  
+  <path id="nxt.runtime.production.module.classpath">
+    <pathelement location="${nxt.output.dir}"/>
+    <pathelement location="${basedir}/conf"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.testlib.classpath"/>
+  </path>
+  
+  <path id="nxt.module.classpath">
+    <path refid="${module.jdk.classpath.nxt}"/>
+    <pathelement location="${nxt.output.dir}"/>
+    <pathelement location="${basedir}/conf"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.testlib.classpath"/>
+  </path>
+  
+  <path id="nxt.runtime.module.classpath">
+    <pathelement location="${nxt.testoutput.dir}"/>
+    <pathelement location="${nxt.output.dir}"/>
+    <pathelement location="${basedir}/conf"/>
+    <path refid="library.lib.classpath"/>
+    <path refid="library.testlib.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.nxt">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.nxt">
+    <patternset refid="excluded.from.module.nxt"/>
+  </patternset>
+  
+  <path id="nxt.module.sourcepath">
+    <dirset dir="${module.nxt.basedir}/src">
+      <include name="java"/>
+    </dirset>
+  </path>
+  
+  <path id="nxt.module.test.sourcepath">
+    <dirset dir="${module.nxt.basedir}/test">
+      <include name="java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.nxt" depends="compile.module.nxt.production,compile.module.nxt.tests" description="Compile module nxt"/>
+  
+  <target name="compile.module.nxt.production" depends="register.custom.compilers" description="Compile module nxt; production classes">
+    <mkdir dir="${nxt.output.dir}"/>
+    <javac2 destdir="${nxt.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.nxt}/javac">
+      <compilerarg line="${compiler.args.nxt}"/>
+      <bootclasspath refid="nxt.module.bootclasspath"/>
+      <classpath refid="nxt.module.production.classpath"/>
+      <src refid="nxt.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.nxt"/>
+    </javac2>
+    
+    <copy todir="${nxt.output.dir}">
+      <fileset dir="${module.nxt.basedir}/src/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.nxt.tests" depends="register.custom.compilers,compile.module.nxt.production" description="compile module nxt; test classes" unless="skip.tests">
+    <mkdir dir="${nxt.testoutput.dir}"/>
+    <javac2 destdir="${nxt.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.nxt}/javac">
+      <compilerarg line="${compiler.args.nxt}"/>
+      <bootclasspath refid="nxt.module.bootclasspath"/>
+      <classpath refid="nxt.module.classpath"/>
+      <src refid="nxt.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.nxt"/>
+    </javac2>
+    
+    <copy todir="${nxt.testoutput.dir}">
+      <fileset dir="${module.nxt.basedir}/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.nxt" description="cleanup module">
+    <delete dir="${nxt.output.dir}"/>
+    <delete dir="${nxt.testoutput.dir}"/>
+  </target>
+</project>

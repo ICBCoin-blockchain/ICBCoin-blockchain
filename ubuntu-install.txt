@@ -1,0 +1,5 @@
+sudo apt update
+sudo apt install openjdk-8-jdk openjdk-8-jre
+sudo apt purge openjfx
+sudo apt install openjfx=8u161-b12-1ubuntu2 libopenjfx-jni=8u161-b12-1ubuntu2 libopenjfx-java=8u161-b12-1ubuntu2
+sudo apt-mark hold openjfx libopenjfx-jni libopenjfx-java

@@ -1,0 +1,197 @@
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright © 2013-2016 The Nxt Core Developers.                            ~
+  ~ Copyright © 2016-2019 Jelurida IP B.V.                                    ~
+  ~                                                                           ~
+  ~ See the LICENSE.txt file at the top-level directory of this distribution  ~
+  ~ for licensing information.                                                ~
+  ~                                                                           ~
+  ~ Unless otherwise agreed in a custom licensing agreement with Jelurida B.V.,
+  ~ no part of the Nxt software, including this file, may be copied, modified,~
+  ~ propagated, or distributed except according to the terms contained in the ~
+  ~ LICENSE.txt file.                                                         ~
+  ~                                                                           ~
+  ~ Removal or modification of this copyright notice is prohibited.           ~
+  ~                                                                           ~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<header class="header">
+  <div class="container-fluid">
+    <div class="logo js-logo" id="logo">
+      <a href="#" data-page="dashboard">
+        <svg>
+          <use xlink:href="img/sprite.svg#logo"></use>
+        </svg>
+      </a>
+    </div>
+    <nav class="nav">
+      <ul class="nav__list" id="header-nav"></ul>
+    </nav>
+    <div class="search">
+      <form class="search__form" id="id_search" action="#" method="get" autocomplete="off">
+        <button class="search__btn" id="search-btn" type="submit" name="search">
+          <svg>
+            <use xlink:href="img/sprite.svg#search"></use>
+          </svg>
+        </button>
+        <input class="search__input" type="text" name="q" placeholder="Search by ID..." data-i18n="[placeholder]search_by_id" />
+      </form>
+    </div>
+    <div class="header__right">
+      <div class="header__right-part-one">
+        <div class="notifications">
+          <button class="notifications__btn" id="notification_menu" type="button" data-toggle="popover" data-placement="bottom" data-content="">
+            <svg>
+              <use xlink:href="img/sprite.svg#notification"></use>
+            </svg>
+            <span class="notifications__badge nm_inner_total"></span>
+          </button>
+        </div>
+        <div class="coins">
+          <div class="coins__item">
+            <a id="account_balance_sidebar" data-target="#account_details_modal" data-toggle="modal" href="#">0</a>
+            <img src="img/coin_gold.svg" alt="Gold coin" />
+          </div>
+          <div class="coins__item">
+            <a id="account_assets_balance" data-target="#account_details_modal" data-toggle="modal" href="#">0</a>
+            <img src="img/coin_silver.svg" alt="Silver coin" />
+          </div>
+        </div>
+        <div class="indicators">
+          <ul class="indicators__list">
+            <li class="indicators__item">
+              <a
+                class="connected goto-page"
+                id="connected_indicator"
+                style="display:none;"
+                href="#"
+                data-page="peers"
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="CONNECTION"
+                data-i18n="[title]server_connection_status"
+              >
+                <i class="fa fa-circle"></i>
+                <span data-i18n="connected">Connected</span></a
+              >
+            </li>
+            <li class="indicators__item">
+              <a class="empty" id="forging_indicator" style="display:none;" href="#">
+                <i class="fa fa-circle"></i>
+                <span data-i18n="forging">Forging</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="header__right-part-two">
+        <div class="account-settings">
+          <span class="account-settings__caption" data-i18n="account">Your Account</span>
+          <div class="account-settings__box">
+            <div class="account-settings__accounts">
+              <div class="account-settings__account">
+                <div class="badge-active" id="sidebar_account_id"></div>
+              </div>
+              <div class="account-settings__change-account">
+                <div id="account_id_dropdown" class="btn-group">
+                  <button class="account-settings__btn-select" type="button" data-toggle="dropdown">
+                    <svg>
+                      <use xlink:href="img/sprite.svg#arrow-down"></use>
+                    </svg>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"></ul>
+                </div>
+              </div>
+            </div>
+            <div class="account-settings__copy">
+              <a class="account-settings__copy-btn" id="copy_account_id" href="#" data-clipboard-target="#sidebar_account_id">
+                <svg>
+                  <use xlink:href="img/sprite.svg#copy"></use>
+                </svg>
+              </a>
+            </div>
+            <div class="account-settings__setting">
+              <a class="account-settings__settng-btn" href="#" data-toggle="modal" data-target="#account_info_modal">
+                <svg>
+                  <use xlink:href="img/sprite.svg#setting"></use>
+                </svg>
+              </a>
+            </div>
+            <div class="account-settings__exit" id="logout_button_container">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="logout_button">
+                <span data-i18n="logout">Log Out</span>
+                <svg>
+                  <use xlink:href="img/sprite.svg#exit"></use>
+                </svg>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a role="menuitem" tabindex="-1" href="#" onclick="NRS.logout()" data-i18n="logout">Log Out</a>
+                </li>
+                <li>
+                  <a role="menuitem" tabindex="-1" href="#" onclick="NRS.logout(true)" data-i18n="logout_stop_forging">Log Out &amp; Stop Forging</a>
+                </li>
+                <li>
+                  <a role="menuitem" tabindex="-1" href="#" data-toggle="modal" data-target="#logout_clear_user_data_modal" data-i18n="logout_clear_user_data">Log Out and Clear User Data</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="pre-header">
+  <div class="container-fluid">
+    <div class="nav__list-sublevel" id="pre-header-sub-menu">
+      <ul class="pre-header__list treeview-menu" data-id="sidebar_contacts">
+        <li class="sm_treeview_submenu">
+          <a href="#" data-page="contacts">
+            <svg>
+              <use xlink:href="img/sprite.svg#plus"></use>
+            </svg>
+            <span data-i18n="add_as_contact" data-toggle="modal" data-target="#add_contact_modal">
+              Добавить контакт
+            </span>
+          </a>
+        </li>
+        <li class="sm_treeview_submenu" id="export_contacts_button">
+          <a href="#" data-page="contacts">
+            <svg>
+              <use xlink:href="img/sprite.svg#export"></use>
+            </svg>
+            <span data-i18n="export_contact">
+              Экспорт контактов
+            </span>
+          </a>
+        </li>
+        <li class="sm_treeview_submenu">
+          <input type="file" id="import_contacts_button_field" />
+          <a id="import_contacts_button" href="#" data-page="contacts">
+            <svg>
+              <use xlink:href="img/sprite.svg#import"></use>
+            </svg>
+            <span id="import_contacts_button" data-i18n="import_contact">Импорт контактов</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav__btn-group">
+      <button class="pre-header__btn-get-bonus btn__success" id="signup_bonus" type="button" onclick="NRS.getBonus()" data-toggle="modal" data-target="#signup_bonus_modal">
+        <svg>
+          <use xlink:href="img/sprite.svg#gift"></use>
+        </svg>
+        <span data-i18n="fund_account_message">Get signup bonus</span>
+      </button>
+      <button class="pre-header__btn-send btn__primary" type="button" data-toggle="modal" data-target="#send_money_modal">
+        <img src="img/coin_gold.svg" alt="Gold coin" />
+        <span data-i18n="send">Send</span>
+      </button>
+      <button class="pre-header__btn-send-ms btn_primary" type="button" data-toggle="modal" data-target="#send_message_modal" style="min-height: 40px">
+        <svg>
+          <use xlink:href="img/sprite.svg#message"></use>
+        </svg>
+        <span data-i18n="send_message">Send Message</span>
+      </button>
+    </div>
+  </div>
+</div>
